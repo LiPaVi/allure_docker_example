@@ -16,8 +16,8 @@
           cache: 'gradle'
       - uses: allure-framework/setup-allurectl@v1
         with:
-          allure-endpoint: ${{ secret.ALLURE_TESTOPS }}
-          allure-token: ${{ secret.ALLURE_TEST_SECRET }}
+          allure-endpoint: ${{ secrets.ALLURE_TESTOPS }}
+          allure-token: ${{ secrets.ALLURE_TEST_SECRET }}
           allure-project-id: 133
 
 #      - name: Login to DockerHub
