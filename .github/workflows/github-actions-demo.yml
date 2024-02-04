@@ -43,7 +43,7 @@
 #        run: docker-compose run test
       - run: env
       - run: ls -al
-      - run: cat ${ ALLURE_TESTPLAN_PATH }
+      - run: cat $ALLURE_TESTPLAN_PATH
       - run: allurectl watch -- docker-compose run --rm tests
         env:
           ALLURE_RESULTS: allure-results
