@@ -1,0 +1,33 @@
+  on: [push]
+
+  jobs:
+    tests:
+      runs-on: ubuntu-latest
+      env:
+        COMPOSE_FILE: docker-compose.yaml
+#        DOCKER_USER: ${{ secrets.DOCKER_USER }}
+#        DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+      steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+          cache: 'gradle'
+      - uses: allure-framework/setup-allurectl@v1
+        with:
+          allure-endpoint: ${{ secret.ALLURE_TESTOPS }}
+          allure-token: ${{ secret.ALLURE_TEST_SECRET }}
+          allure-project-id: 133
+
+#      - name: Login to DockerHub
+#        run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+
+      - name: Build docker images
+        run: docker-compose build
+
+#      - name: Run tests
+#        run: docker-compose run test
+      - run: allurectl watch -- docker-compose run --rm tests
+        env:
+          ALLURE_RESULTS: allure-results
