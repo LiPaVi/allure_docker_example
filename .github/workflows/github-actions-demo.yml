@@ -13,6 +13,7 @@
     ALLURE_ENDPOINT: ${{ secrets.ALLURE_TESTOPS }}
     ALLURE_PROJECT_ID: 133
     ALLURE_RESULTS: allure-results
+    ALLURE_TESTPLAN_PATH: testplan/testplan.json
   jobs:
     tests:
       runs-on: ubuntu-latest

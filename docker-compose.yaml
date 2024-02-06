@@ -16,6 +16,7 @@ services:
     build: .
     volumes:
       - ./allure-results:/app/allure-results
+      - ./testplan:/app/testplan
 
   allure-ui:
     image: "frankescobar/allure-docker-service-ui"
