@@ -45,6 +45,12 @@
       - run: allurectl watch -- docker-compose run --rm tests
         env:
           ALLURE_RESULTS: allure-results
-      - run: env
-      - run: ls -al
-      - run: cat $ALLURE_TESTPLAN_PATH
+      - name: debug env out
+        if: '!cancelled()'
+        run: env
+      - name: debug ls out
+        if: '!cancelled()'
+        run: ls -al
+      - name: debug testplan out
+        if: '!cancelled()'
+        run: cat $ALLURE_TESTPLAN_PATH || true
